@@ -1,16 +1,91 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <title>Grocery List Total Price</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .total-row td {
+            font-weight: bold;
+            text-align: right;
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+    <table id="grocery-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price (₹)</th>
+            </tr>
+        </thead>
+        <tbody id="item-list">
+            <tr>
+                <td>Milk</td>
+                <td data-ns-test="prices">45</td>
+            </tr>
+            <tr>
+                <td>Bread</td>
+                <td data-ns-test="prices">30</td>
+            </tr>
+            <tr>
+                <td>Eggs (Dozen)</td>
+                <td data-ns-test="prices">95</td>
+            </tr>
+            <tr>
+                <td>Apples (1 kg)</td>
+                <td data-ns-test="prices">150</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function calculateAndDisplayTotal() {
+            const priceElements = document.querySelectorAll('[data-ns-test="prices"]');
+            let grandTotal = 0;
+
+            priceElements.forEach(priceElement => {
+                const price = parseInt(priceElement.textContent.trim(), 10);
+                
+                if (!isNaN(price)) {
+                    grandTotal += price;
+                }
+            });
+
+            const tableBody = document.getElementById('item-list');
+            
+            const existingTotalRow = document.querySelector('.total-row');
+            if (existingTotalRow) {
+                existingTotalRow.remove();
+            }
+
+            const totalRow = document.createElement('tr');
+            totalRow.classList.add('total-row');
+            
+            const totalCell = document.createElement('td');
+            totalCell.setAttribute('colspan', '2'); 
+            
+            const grandTotalSpan = document.createElement('span');
+            grandTotalSpan.setAttribute('data-ns-test', 'grandTotal');
+            grandTotalSpan.textContent = `Grand Total: ₹${grandTotal}`;
+
+            totalCell.appendChild(grandTotalSpan);
+            totalRow.appendChild(totalCell);
+            
+            tableBody.appendChild(totalRow);
+        }
+
+        document.addEventListener('DOMContentLoaded', calculateAndDisplayTotal);
+    </script>
 
 </body>
-
 </html>
