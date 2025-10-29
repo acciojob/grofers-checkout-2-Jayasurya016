@@ -31,26 +31,26 @@
         <tbody id="item-list">
             <tr>
                 <td>Milk</td>
-                <td data-ns-test="prices">45</td>
+                <td data-ns-test="price">45</td>
             </tr>
             <tr>
                 <td>Bread</td>
-                <td data-ns-test="prices">30</td>
+                <td data-ns-test="price">30</td>
             </tr>
             <tr>
                 <td>Eggs (Dozen)</td>
-                <td data-ns-test="prices">95</td>
+                <td data-ns-test="price">95</td>
             </tr>
             <tr>
                 <td>Apples (1 kg)</td>
-                <td data-ns-test="prices">150</td>
+                <td data-ns-test="price">150</td>
             </tr>
         </tbody>
     </table>
 
     <script>
         function calculateAndDisplayTotal() {
-            const priceElements = document.querySelectorAll('[data-ns-test="prices"]');
+            const priceElements = document.querySelectorAll('[data-ns-test="price"]');
             let grandTotal = 0;
 
             priceElements.forEach(priceElement => {
