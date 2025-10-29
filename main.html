@@ -72,13 +72,22 @@
             totalRow.classList.add('total-row');
             
             const totalCell = document.createElement('td');
-            totalCell.setAttribute('colspan', '2'); 
+            totalCell.setAttribute('colspan', '2');
             
+            // --- FIX APPLIED HERE ---
+            // 1. Create a text node for the label and symbol
+            const labelText = document.createTextNode('Grand Total: ₹');
+
+            // 2. Create the span specifically for the number (the required data attribute)
             const grandTotalSpan = document.createElement('span');
             grandTotalSpan.setAttribute('data-ns-test', 'grandTotal');
-            grandTotalSpan.textContent = `Grand Total: ₹${grandTotal}`;
+            grandTotalSpan.textContent = grandTotal; // ONLY the number goes here
 
+            // 3. Append both the label and the number span to the cell
+            totalCell.appendChild(labelText);
             totalCell.appendChild(grandTotalSpan);
+            // ------------------------
+
             totalRow.appendChild(totalCell);
             
             tableBody.appendChild(totalRow);
